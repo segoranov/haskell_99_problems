@@ -42,3 +42,14 @@ map'' f xs = foldr' (\x acc -> f x : acc) [] xs
 -- map with foldr is preferred because ++ is more expensive than :
 map''' :: (a -> b) -> [a] -> [b]
 map''' f xs = foldl' (\acc x -> acc ++ [f x]) [] xs
+
+-- foldl1 and foldr1 assume the starting value to be the first or last element
+
+foldl1' :: (a -> a -> a) -> [a] -> a
+foldl1' f [] = error "foldl1 called on empty list"
+foldl1' f (x:xs) = foldl' f x xs
+
+foldr1' :: (a -> a -> a) -> [a] -> a
+foldr1' f [] = error "foldr1 called on empty list"
+foldr1' f [x] = x
+foldr1' f (x:xs) = f x (foldr1' f xs)
