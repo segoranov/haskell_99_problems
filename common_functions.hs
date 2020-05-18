@@ -22,5 +22,16 @@ takeWhile' pred list@(x:xs)
 foldl' f acc [] = acc
 foldl' f acc (x:xs) = foldl' f (f acc x) xs
 
+foldr' f acc [] = acc
+foldr' f acc (x:xs) = f x (foldr' f acc xs)
+
 sum' :: (Num a) => [a] -> a
 sum' xs = foldl' (\acc x -> acc + x) 0 xs
+
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' x xs = foldl' (\acc y -> if y == x then True else acc) False xs
+
+elem'' _ [] = False
+elem'' x (y:ys)
+    | x == y = True
+    | otherwise = elem'' x ys
