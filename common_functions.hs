@@ -59,3 +59,15 @@ maximum' = foldr1' (\x acc -> if x > acc then x else acc)
 
 reverse' :: [a] -> [a]
 reverse' = foldl' (\acc x -> x:acc) []
+
+product' :: (Num a) => [a] -> a
+product' = foldr1' (*)
+
+filter'' :: (a -> Bool) -> [a] -> [a]
+filter'' pred = foldr' (\x acc -> if pred x then x : acc else acc) []
+
+head' :: [a] -> a
+head' = foldr1' (\x _ -> x)
+
+last' :: [a] -> a
+last' = foldl' (\_ x -> x)
