@@ -57,3 +57,5 @@ foldr1' f (x:xs) = f x (foldr1' f xs)
 maximum' :: (Ord a) => [a] -> a
 maximum' = foldr1' (\x acc -> if x > acc then x else acc)
 
+reverse' :: [a] -> [a]
+reverse' = foldl' (\acc x -> x:acc) []
