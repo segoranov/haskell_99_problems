@@ -71,3 +71,13 @@ head' = foldr1' (\x _ -> x)
 
 last' :: [a] -> a
 last' = foldl1' (\_ x -> x)
+
+-- scanl implemented with recursion
+scanl' :: (b -> a -> b) -> b -> [a] -> [b]
+scanl' f acc [] = [acc]
+scanl' f acc (x:xs) = [acc] ++ scanl' f (f acc x) xs
+
+-- scanl implemented with foldl
+scanl'' f acc = foldl' (\acc x -> acc ++ [f (last' acc) x]) [acc]
+
+-- TODO: Implement scanr first with recursion and then foldr
