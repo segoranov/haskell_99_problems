@@ -38,3 +38,7 @@ elem'' x (y:ys)
 
 map'' :: (a -> b) -> [a] -> [b]
 map'' f xs = foldr' (\x acc -> f x : acc) [] xs
+
+-- map with foldr is preferred because ++ is more expensive than :
+map''' :: (a -> b) -> [a] -> [b]
+map''' f xs = foldl' (\acc x -> acc ++ [f x]) [] xs
