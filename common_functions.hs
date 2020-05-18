@@ -35,3 +35,6 @@ elem'' _ [] = False
 elem'' x (y:ys)
     | x == y = True
     | otherwise = elem'' x ys
+
+map'' :: (a -> b) -> [a] -> [b]
+map'' f xs = foldr' (\x acc -> f x : acc) [] xs
