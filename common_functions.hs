@@ -70,4 +70,4 @@ head' :: [a] -> a
 head' = foldr1' (\x _ -> x)
 
 last' :: [a] -> a
-last' = foldl' (\_ x -> x)
+last' = foldl1' (\_ x -> x)
