@@ -53,3 +53,7 @@ foldr1' :: (a -> a -> a) -> [a] -> a
 foldr1' f [] = error "foldr1 called on empty list"
 foldr1' f [x] = x
 foldr1' f (x:xs) = f x (foldr1' f xs)
+
+maximum' :: (Ord a) => [a] -> a
+maximum' = foldr1' (\x acc -> if x > acc then x else acc)
+
