@@ -87,3 +87,8 @@ scanr' f acc (x:xs) = f x acc0 : accs
 
 -- scanr implemented with foldr
 scanr'' f acc = foldr' (\x acc -> f x (head' acc) : acc) [acc]
+
+group' :: (Eq a) => [a] -> [[a]]
+group' [] = []
+group' list@(x:xs) = listEqToFirst : group' (drop (length listEqToFirst) list) where
+    listEqToFirst = takeWhile (==x) list
