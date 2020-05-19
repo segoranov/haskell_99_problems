@@ -1,3 +1,5 @@
+import Data.List (group)
+
 -- Problem 1
 -- (*) Find the last element of a list.
 
@@ -134,3 +136,28 @@ flatten (List []) = []
 flatten' :: NestedList a -> [a]
 flatten' (Elem x) = [x]
 flatten' (List xs) = foldr (++) [] $ map flatten' xs
+
+-- Problem 8
+-- (**) Eliminate consecutive duplicates of list elements.
+
+-- If a list contains repeated elements they should be replaced with a single copy of the element.
+-- The order of the elements should not be changed.
+
+-- Example:
+
+-- * (compress '(a a a a b c c a a d e e e e))
+-- (A B C A D E)
+
+-- Example in Haskell:
+
+-- λ> compress "aaaabccaadeeee"
+-- "abcade"
+compress :: (Eq a) => [a] -> [a]
+compress xs = foldl addIfNonPresent [] xs where
+    addIfNonPresent acc x
+        | null acc = [x]
+        | x == (last acc) = acc
+        | otherwise = acc ++ [x]
+
+compress :: (Eq a) => [a] -> [a]
+compress' = map head . group -- wow! so elegant: group "aaaaaabbbbcccdddeeee" -> ["aaaaaa","bbbb","ccc","ddd","eeee"]
