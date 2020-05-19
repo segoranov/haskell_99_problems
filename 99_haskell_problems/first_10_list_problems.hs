@@ -100,5 +100,5 @@ myReverse'' (x:xs) = myReverse'' xs ++ [x]
 -- λ> isPalindrome [1,2,4,8,16,8,4,2,1]
 -- True
 
-isPalindrome :: [a] -> Bool
+isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome xs = (reverse xs) == xs
