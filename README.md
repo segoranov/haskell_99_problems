@@ -4,4 +4,4 @@
 ---
 
 ### [99 Haskell problems](https://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems)
-- [Solutions to some of the 99 haskell problems](https://github.com/segoranov/haskell_practice/tree/master/99_haskell_problems)
+- [Solutions to first 10 list problems](https://github.com/segoranov/haskell_practice/blob/master/99_haskell_problems/first_10_list_problems.hs)
