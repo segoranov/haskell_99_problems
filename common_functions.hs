@@ -80,4 +80,10 @@ scanl' f acc (x:xs) = [acc] ++ scanl' f (f acc x) xs
 -- scanl implemented with foldl
 scanl'' f acc = foldl' (\acc x -> acc ++ [f (last' acc) x]) [acc]
 
--- TODO: Implement scanr first with recursion and then foldr
+-- scanr implemented with recursion
+scanr' f acc [] = [acc]
+scanr' f acc (x:xs) = f x acc0 : accs
+    where accs@(acc0:_) = scanr f acc xs
+
+-- scanr implemented with foldr
+scanr'' f acc = foldr' (\x acc -> f x (head' acc) : acc) [acc]
