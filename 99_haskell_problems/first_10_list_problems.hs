@@ -169,3 +169,19 @@ compress'' (x:xs) = x : (compress'' $ dropWhile (==x) xs)
 compress''' :: (Eq a) => [a] -> [a]
 compress''' [] = []
 compress''' xs = foldr (\x acc -> if x == head acc then acc else x : acc) [last xs] xs
+
+-- Problem 9
+-- (**) Pack consecutive duplicates of list elements into sublists. If a list contains repeated elements they should be placed in separate sublists.
+
+-- Example:
+
+-- * (pack '(a a a a b c c a a d e e e e))
+-- ((A A A A) (B) (C C) (A A) (D) (E E E E))
+-- Example in Haskell:
+
+-- λ> pack ['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e']
+-- ["aaaa","b","cc","aa","d","eeee"]
+
+pack :: (Eq a) => [a] -> [[a]]
+pack [] = []
+pack xs = foldr (\x acc -> if x `elem` head acc then (x : head acc) : tail acc else [x] : acc) [[last xs]] xs
