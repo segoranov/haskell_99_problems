@@ -59,3 +59,11 @@ elementAt' n xs = xs !! (n-1)
 -- 3
 -- λ> myLength "Hello, world!"
 -- 13
+
+myLength [] = 0
+myLength (x:xs) = 1 + myLength' xs
+
+myLength' = foldl (\acc x -> acc + 1) 0
+
+-- TODO! Why does this does not compile? :  myLength'' = foldr (\x acc -> 1 + acc) 0
+myLength'' xs = foldr (\x acc -> 1 + acc) 0 xs
