@@ -192,3 +192,13 @@ pack' [x] = [[x]]
 pack' (x:xs) = if x `elem` (head $ pack xs)
                then (x:(head $ pack xs)):(tail $ pack xs)
                else [x]:(pack xs)
+
+pack'' :: (Eq a) => [a] -> [[a]]
+pack'' [] = []
+pack'' list@(x:xs) = listEqToFirst : pack'' (drop (length listEqToFirst) list) where
+    listEqToFirst = takeWhile (==x) list
+
+pack''' :: (Eq a) => [a] -> [[a]]
+pack''' [] = []
+pack''' list@(x:xs) = takeWhile (==x) list : pack''' (dropWhile (==x) list)
+
