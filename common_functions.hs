@@ -93,6 +93,10 @@ group' [] = []
 group' list@(x:xs) = listEqToFirst : group' (drop (length listEqToFirst) list) where
     listEqToFirst = takeWhile (==x) list
 
+group'' :: (Eq a) => [a] -> [[a]]
+group'' [] = []
+group'' list@(x:xs) = takeWhile (==x) list : group'' (dropWhile (==x) list)
+
 drop' :: Int -> [a] -> [a]
 drop' _ [] = []
 drop' n list@(x:xs)
