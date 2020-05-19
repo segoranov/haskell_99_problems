@@ -68,3 +68,22 @@ myLength' = foldl (\acc x -> acc + 1) 0
 
 -- TODO! Why does this does not compile? :  myLength'' = foldr (\x acc -> 1 + acc) 0
 myLength'' xs = foldr (\x acc -> 1 + acc) 0 xs
+
+-- Problem 5
+-- (*) Reverse a list.
+
+-- Example in Haskell:
+
+-- λ> myReverse "A man, a plan, a canal, panama!"
+-- "!amanap ,lanac a ,nalp a ,nam A"
+-- λ> myReverse [1,2,3,4]
+-- [4,3,2,1]
+
+myReverse :: [a] -> [a]
+myReverse = foldl (\acc x -> x : acc) []
+
+myReverse' :: [a] -> [a]
+myReverse' = foldl (flip (:)) []
+
+myReverse'' [] = []
+myReverse'' (x:xs) = myReverse'' xs ++ [x]
