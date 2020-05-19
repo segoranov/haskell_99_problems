@@ -60,8 +60,9 @@ elementAt' n xs = xs !! (n-1)
 -- λ> myLength "Hello, world!"
 -- 13
 
+myLength :: [a] -> Int
 myLength [] = 0
-myLength (x:xs) = 1 + myLength' xs
+myLength (_:xs) = 1 + myLength' xs
 
 myLength' = foldl (\acc x -> acc + 1) 0
 
