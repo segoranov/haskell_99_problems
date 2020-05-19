@@ -159,5 +159,13 @@ compress xs = foldl addIfNonPresent [] xs where
         | x == (last acc) = acc
         | otherwise = acc ++ [x]
 
-compress :: (Eq a) => [a] -> [a]
+compress' :: (Eq a) => [a] -> [a]
 compress' = map head . group -- wow! so elegant: group "aaaaaabbbbcccdddeeee" -> ["aaaaaa","bbbb","ccc","ddd","eeee"]
+
+compress'' :: (Eq a) => [a] -> [a]
+compress'' [] = []
+compress'' (x:xs) = x : (compress'' $ dropWhile (==x) xs)
+
+compress''' :: (Eq a) => [a] -> [a]
+compress''' [] = []
+compress''' xs = foldr (\x acc -> if x == head acc then acc else x : acc) [last xs] xs
